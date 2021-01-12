@@ -5,6 +5,26 @@ import './customers.css';
 
 //START: CLASS
 class Customers extends Component{
+  //start: Constructor Method
+  constructor(){
+    super();
+    //Initialise State Values
+    this.state={ 
+      customers:[]
+    }
+  }
+  //end: Constructor Method
+
+  //start: Lifecycle Methods
+  componentDidMount(){ 
+    //runs automatically when component is mounted
+    fetch('/api/customers')
+    .then(res=>res.json())
+    .then(customers =>this.setState({customers},()=>console.log('Customers fetched...', customers)));
+
+  }
+  //end: Lifecycle Methods
+
   //start: Render Method
   render(){
     return (
